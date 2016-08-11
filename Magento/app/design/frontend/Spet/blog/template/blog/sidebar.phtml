@@ -1,0 +1,21 @@
+<div>
+    <h1>Hello</h1>
+    <?php
+    $path = Mage::getBaseUrl('media') . 'catalog/product';
+    $products = $this->getProducts();
+    if(!empty($products)) {
+        foreach ($products as $product) {
+            $categoryId = $product->getCategoryIds();
+
+            $url = Mage::helper('spet_blog/link')->rewrittenProductUrl($product->getId(), $categoryId[0], $product->getStoreId());
+
+            echo "<a href='" . Mage::getBaseUrl() . $url . "'>" . $product->getName() . "</a>";
+            echo "<a href='" . Mage::getBaseUrl() . $url . "'>" .
+                "<img src='" . $path . $product->getImage() . "' width='100px'></a>";
+            echo $this->getPriceHtml($product);
+            echo $product->getShortDescription();
+            echo '<br><br>';
+        }
+    }
+    ?>
+</div>

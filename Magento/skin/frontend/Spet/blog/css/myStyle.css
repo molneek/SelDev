@@ -1,0 +1,19 @@
+body {
+    background: #00ffff;
+}
+
+a {
+    color: #99331f ;
+    text-decoration: underline;
+}
+
+.main-text-on-blog {
+    margin-top: 10px;
+    width: auto;
+}
+
+.post-area {
+    height: 300px;
+}
+
+.imgHover:hover {border: 1px solid;}

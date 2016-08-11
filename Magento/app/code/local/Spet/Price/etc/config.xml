@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <modules>
+        <Spet_Price>
+            <version>1.0.0</version>
+        </Spet_Price>
+    </modules>
+    <adminhtml>
+        <events>
+
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <spet_price_core_block_abstract_prepare_layout_before>
+                        <class>Spet_Price_Model_Observer</class>
+                        <method>addMassActionToCatalogProduct</method>
+                    </spet_price_core_block_abstract_prepare_layout_before>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+
+        </events>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <spet_price before="Mage_Adminhtml">Spet_Price_Adminhtml</spet_price>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <global>
+        <blocks>
+            <spet_price>
+                <class>Spet_Price_Block</class>
+            </spet_price>
+        </blocks>
+
+        <helpers>
+            <spet_price>
+                <class>Spet_Price_Helper</class>
+            </spet_price>
+        </helpers>
+
+        <models>
+            <spet_price>
+                <class>Spet_Price_Model</class>
+            </spet_price>
+        </models>
+
+        <price_mass_update>
+            <operations>
+                <sumPrice>
+                    <class>spet_price/adminhtml_productPrice_sumPrice</class>
+                    <label>+ n</label>
+                </sumPrice>
+                <subPrice>
+                    <class>spet_price/adminhtml_productPrice_subPrice</class>
+                    <label>- n</label>
+                </subPrice>
+                <sumPercentPrice>
+                    <class>spet_price/adminhtml_productPrice_sumPercentPrice</class>
+                    <label>+ n%</label>
+                </sumPercentPrice>
+                <subPercentPrice>
+                    <class>spet_price/adminhtml_productPrice_subPercentPrice</class>
+                    <label>- n%</label>
+                </subPercentPrice>
+                <multiplyPrice>
+                    <class>spet_price/adminhtml_productPrice_multiplyPrice</class>
+                    <label>* n</label>
+                </multiplyPrice>
+            </operations>
+        </price_mass_update>
+    </global>
+</config>

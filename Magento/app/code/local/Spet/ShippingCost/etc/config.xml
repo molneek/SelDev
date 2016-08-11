@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <modules>
+        <Spet_ShippingCost>
+            <version>1.0.0</version>
+        </Spet_ShippingCost>
+    </modules>
+
+    <frontend>
+        <layout>
+            <updates>
+                <spet_shippingCost>
+                    <file>spet_shippingCost.xml</file>
+                </spet_shippingCost>
+            </updates>
+        </layout>
+        <events>
+            <sales_quote_item_set_product>
+                <observers>
+                    <spet_shippingCost>
+                        <class>Spet_ShippingCost_Model_ObserverQuote</class>
+                        <method>salesQuoteItemSetCustomAttribute</method>
+                    </spet_shippingCost>
+                </observers>
+            </sales_quote_item_set_product>
+        </events>
+    </frontend>
+
+    <global>
+
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_totals>Spet_ShippingCost_Block_Adminhtml_RW_Sales_Order_Totals</sales_order_totals>
+                    <sales_order_invoice_totals>Spet_ShippingCost_Block_Adminhtml_RW_Sales_Invoice_Totals</sales_order_invoice_totals>
+                    <sales_order_creditmemo_totals>Spet_ShippingCost_Block_Adminhtml_RW_Sales_Creditmemo_Totals</sales_order_creditmemo_totals>
+                </rewrite>
+            </adminhtml>
+            <sales>
+                <rewrite>
+                    <order_totals>Spet_ShippingCost_Block_RW_Order_Totals</order_totals>
+                </rewrite>
+            </sales>
+            <shippingCost>
+                <class>Spet_ShippingCost_Block</class>
+            </shippingCost>
+        </blocks>
+
+        <models>
+            <spet_shippingCost>
+                <class>Spet_ShippingCost_Model</class>
+            </spet_shippingCost>
+        </models>
+
+        <resources>
+            <spet_shippingCost_setup>
+                <setup>
+                    <module>Spet_ShippingCost</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+            </spet_shippingCost_setup>
+        </resources>
+
+        <helpers>
+            <spet_shippingCost>
+                <class>Spet_ShippingCost_Helper</class>
+            </spet_shippingCost>
+        </helpers>
+
+        <sales>
+            <quote>
+                 <totals>
+                     <spet_shippingCost>
+                         <class>Spet_ShippingCost_Model_Total_Quote_AdditionalShippingCostQuote</class>
+                         <after>subtotal</after>
+                         <before>tax</before>
+                     </spet_shippingCost>
+                 </totals>
+                <item>
+                    <product_attributes>
+                        <additional_shipping_cost />
+                    </product_attributes>
+                </item>
+            </quote>
+            <order_invoice>
+                <totals>
+                    <spet_shippingCost>
+                        <class>Spet_ShippingCost_Model_Total_Quote_AdditionalShippingCostInvoice</class>
+                        <after>subtotal</after>
+                        <before>tax</before>
+                    </spet_shippingCost>
+                </totals>
+            </order_invoice>
+            <order_creditmemo>
+                <totals>
+                    <spet_shippingCost>
+                        <class>Spet_ShippingCost_Model_Total_Quote_AdditionalShippingCostCreditmemo</class>
+                        <after>subtotal</after>
+                        <before>tax</before>
+                    </spet_shippingCost>
+                </totals>
+            </order_creditmemo>
+        </sales>
+
+        <fieldsets>
+            <sales_convert_quote_item>
+                <additional_shipping_cost>
+                    <to_order_item>*</to_order_item>
+                </additional_shipping_cost>
+            </sales_convert_quote_item>
+            <sales_convert_order_item>
+                <additional_shipping_cost>
+                    <to_quote_item>*</to_quote_item>
+                </additional_shipping_cost>
+            </sales_convert_order_item>
+        </fieldsets>
+    </global>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <sales>
+                                <children>
+                                    <sales_checkout_totals_sort_order>
+                                        <spet_shippingCost translate="title" module="spet_shippingCost">
+                                            <title>Section inside Catalog</title>
+                                        </spet_shippingCost>
+                                    </sales_checkout_totals_sort_order>
+                                </children>
+                            </sales>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+</config>

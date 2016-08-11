@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+
+    <modules>
+        <Spet_Blog>
+            <version>1.0.3</version>
+        </Spet_Blog>
+    </modules>
+
+    <frontend>
+        <routers>
+            <blog>
+                <use>standard</use>
+                <args>
+                    <module>Spet_Blog</module>
+                    <frontName>blog</frontName>
+                </args>
+            </blog>
+        </routers>
+        <layout>
+            <updates>
+                <spet_blog>
+                    <file>spet_blog.xml</file>
+                </spet_blog>
+            </updates>
+        </layout>
+    </frontend>
+
+    <global>
+
+        <resources>
+            <spet_blog_setup>
+                <setup>
+                    <module>Spet_Blog</module>
+                </setup>
+            </spet_blog_setup>
+        </resources>
+
+        <blocks>
+            <spet_blog>
+                <class>Spet_Blog_Block</class>
+            </spet_blog>
+        </blocks>
+
+        <helpers>
+            <spet_blog>
+                <class>Spet_Blog_Helper</class>
+            </spet_blog>
+        </helpers>
+
+        <models>
+
+            <blog>
+                <class>Spet_Blog_Model</class>
+                <resourceModel>blog_resource</resourceModel>
+            </blog>
+
+            <blog_resource>
+                <class>Spet_Blog_Model_Resource</class>
+                <entities>
+                    <articles>
+                        <table>blog_posts</table>
+                    </articles>
+                    <products>
+                        <table>products_and_posts</table>
+                    </products>
+                    <customer>
+                        <table>customer_entity</table>
+                    </customer>
+                    <catalog>
+                        <table>catalog_product_entity</table>
+                    </catalog>
+                </entities>
+            </blog_resource>
+
+        </models>
+
+        <events>
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <spet_blog_blogconfig>
+                        <class>blog/observer</class>
+                        <method>showStatus</method>
+                    </spet_blog_blogconfig>
+                </observers>
+            </core_block_abstract_prepare_layout_after>
+        </events>
+
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <spet_blog before="Mage_Adminhtml">Spet_Blog_Adminhtml</spet_blog>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <blogconfig>
+                                            <title>Blog Config</title>
+                                        </blogconfig>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+</config>

@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <Spet_TopProductWidget>
+            <version>1.0.1</version>
+        </Spet_TopProductWidget>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <spet_topProductWidget>
+                    <file>spet_topProductWidget.xml</file>
+                </spet_topProductWidget>
+            </updates>
+        </layout>
+    </frontend>
+
+    <adminhtml>
+        <events>
+
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <topProductWidget_core_block_abstract_to_html_before>
+                        <class>Spet_TopProductWidget_Model_Observer</class>
+                        <method>addIsTopColumn</method>
+                    </topProductWidget_core_block_abstract_to_html_before>
+                </observers>
+            </core_block_abstract_to_html_before>
+            <catalog_product_collection_load_before>
+                <observers>
+                    <topProductWidget_catalog_product_collection_load_before>
+                        <class>Spet_TopProductWidget_Model_Observer</class>
+                        <method>getProductCollection</method>
+                    </topProductWidget_catalog_product_collection_load_before>
+                </observers>
+            </catalog_product_collection_load_before>
+
+        </events>
+    </adminhtml>
+
+    <global>
+        <resources>
+            <spet_topProductWidget_setup>
+                <setup>
+                    <module>Spet_TopProductWidget</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+            </spet_topProductWidget_setup>
+        </resources>
+
+        <blocks>
+            <topProductWidget>
+                <class>Spet_TopProductWidget_Block</class>
+            </topProductWidget>
+        </blocks>
+
+        <models>
+            <topProductWidget>
+                <class>Spet_TopProductWidget_Model</class>
+            </topProductWidget>
+        </models>
+
+        <helpers>
+            <spet_topProductWidget>
+                <class>Spet_TopProductWidget_Helper</class>
+            </spet_topProductWidget>
+        </helpers>
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <spet_topProductWidget before="Mage_Adminhtml">Spet_Top3Widget_Adminhtml</spet_topProductWidget>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <is_top>
+                                            <title>Education</title>
+                                        </is_top>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>

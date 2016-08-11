@@ -1,0 +1,15 @@
+<?php
+$data = $this->getWidgetData();
+?>
+
+<div>
+    <h1><?php echo array_pop($data) ?></h1>
+    <?php foreach ($data as $key => $value) {?>
+    <p style="clear: both">
+        <a href="<?php echo $data[$key]['url'] ?>">
+            <img class="imgHover" src="<?php echo Mage::getBaseUrl('media') . 'catalog/product' . $data[$key]['image']; ?>"
+                 style="width: 50px; height: 50px; float: left;"></a>
+        <a href="<?php echo $data[$key]['url'] ?>"><?php echo $data[$key]['name'] ?></a>
+    </p><br><br>
+    <?php } ?>
+</div>

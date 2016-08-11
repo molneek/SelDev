@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<widgets>
+    <topProduct type="topProductWidget/topProducts" module="spet_topProductWidget">
+        <name>Top products</name>
+        <description>List Top Searches</description>
+        <parameters>
+            <widget_title translate="label">
+                <label>Title</label>
+                <sort_order>1</sort_order>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+            </widget_title>
+            <widget_number translate="label">
+                <label>Number Products</label>
+                <sort_order>2</sort_order>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+            </widget_number>
+        </parameters>
+    </topProduct>
+</widgets>

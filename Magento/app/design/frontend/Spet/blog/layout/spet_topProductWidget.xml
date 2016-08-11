@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="left">
+            <block type="topProductWidget/topProducts" name="widget" template="topProductWidget/widget.phtml" before=""/>
+        </reference>
+    </default>
+    <page_two_columns_right>
+        <reference name="left">
+            <block type="topProductWidget/topProducts" name="widget" template="topProductWidget/widget.phtml" before=""/>
+        </reference>
+    </page_two_columns_right>
+</layout>

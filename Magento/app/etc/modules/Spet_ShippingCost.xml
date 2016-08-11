@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <modules>
+        <Spet_ShippingCost>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Spet_ShippingCost>
+    </modules>
+</config>
